@@ -54,6 +54,7 @@ UserSchema.pre('save', async function(next) {
   next();
 });
 
+
 // Match user entered password to hashed password in database
 UserSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
@@ -75,5 +76,8 @@ UserSchema.methods.getResetPasswordToken = function() {
 
   return resetToken;
 };
+
+// Indexes
+UserSchema.index({ email: 1 });
 
 module.exports = mongoose.model('User', UserSchema);
