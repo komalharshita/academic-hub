@@ -32,8 +32,9 @@ const GoalSchema = new mongoose.Schema({
   timestamps: true,
 });
 
-// Indexes
-GoalSchema.index({ user: 1, completed: 1 });
-GoalSchema.index({ dueDate: 1 });
+// --- ADD THIS SECTION ---
+GoalSchema.index({ user: 1 });
+GoalSchema.index({ text: 'text', description: 'text' });
+// ------------------------
 
 module.exports = mongoose.model('Goal', GoalSchema);
